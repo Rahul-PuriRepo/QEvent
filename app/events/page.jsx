@@ -1,10 +1,5 @@
-import { Suspense } from "react";
-import EventsContent from "@/components/EventsContent";
+"use client";
 
 export default function EventsPage() {
-  return (
-    <Suspense fallback={<p className="p-6">Loading...</p>}>
-      <EventsContent />
-    </Suspense>
-  );
+  return <div>Events working</div>;
 }
