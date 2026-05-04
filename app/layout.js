@@ -12,15 +12,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <SessionWrapper>
-      <html lang="en">
-        <body className={inter.className}>
+    <html lang="en">
+      <body className={inter.className}>
+        <SessionWrapper>
           <ThemeProvider attribute="class" defaultTheme="light">
             <Header />
             {children}
           </ThemeProvider>
-        </body>
-      </html>
-    </SessionWrapper>
+        </SessionWrapper>
+      </body>
+    </html>
   );
 }
