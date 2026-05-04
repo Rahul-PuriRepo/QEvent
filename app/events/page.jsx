@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import EventsContent from "./EventsContent";
+import EventsContent from "@/components/EventsContent";
 
 export default function EventsPage() {
   return (
