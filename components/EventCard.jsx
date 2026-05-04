@@ -3,6 +3,7 @@
 import Tag from "./Tag";
 import Link from "next/link";
 
+
 const EventCard = ({ eventData }) => {
   if (!eventData) return null;
 
