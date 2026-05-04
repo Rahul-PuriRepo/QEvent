@@ -13,8 +13,8 @@ export default function EventsContent() {
   const [error, setError] = useState(null);
 
   const searchParams = useSearchParams();
-  const artist = searchParams.get("artist");
-  const tag = searchParams.get("tag");
+  const artist = searchParams.get("artist") || "";
+  const tag = searchParams.get("tag") || ":";
 
   useEffect(() => {
     const controller = new AbortController();
@@ -52,16 +52,22 @@ export default function EventsContent() {
     let filtered = allEvents;
 
     if (artist) {
-      filtered = filtered.filter(
-        (e) => e.artist?.toLowerCase() === artist.toLowerCase()
-      );
-    }
+  filtered = filtered.filter(
+    (e) =>
+      typeof e?.artist === "string" &&
+      e.artist.toLowerCase() === artist.toLowerCase()
+  );
+}
 
     if (tag) {
-      filtered = filtered.filter((e) =>
-        e.tags?.some((t) => t.toLowerCase() === tag.toLowerCase())
-      );
-    }
+  filtered = filtered.filter(
+    (e) =>
+      Array.isArray(e?.tags) &&
+      e.tags.some(
+        (t) => typeof t === "string" && t.toLowerCase() === tag.toLowerCase()
+      )
+  );
+}
 
     setEvents(filtered);
   }, [artist, tag, allEvents]);
