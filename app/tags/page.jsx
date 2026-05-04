@@ -13,15 +13,20 @@ async function getEvents() {
 export default async function TagsPage() {
   const events = await getEvents();
 
-  // Extract unique tags
-  const allTags = events.flatMap((e) => e.tags);
-  const uniqueTags = [...new Set(allTags)];
+  // Safe extraction of tags
+  const allTags = events.flatMap((e) =>
+    Array.isArray(e?.tags) ? e.tags : []
+  );
+
+  const uniqueTags = [...new Set(allTags.filter(Boolean))];
 
   return (
     <div className="flex flex-wrap gap-4 p-6">
-      {uniqueTags.map((tag) => (
-        <Tag key={tag} text={tag} />
-      ))}
+      {uniqueTags.map((tag) =>
+        typeof tag === "string" ? (
+          <Tag key={tag} text={tag} />
+        ) : null
+      )}
     </div>
   );
 }

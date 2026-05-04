@@ -7,7 +7,8 @@ async function getArtists() {
     throw new Error("Failed to fetch artists");
   }
 
-  return res.json();
+  const json = await res.json();
+  return Array.isArray(json) ? json : [];
 }
 
 export default async function ArtistsPage() {
@@ -15,9 +16,14 @@ export default async function ArtistsPage() {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      {artists.map((artist) => (
-        <ArtistCard key={artist.id} artistData={artist} />
-      ))}
+      {artists.map((artist) =>
+        artist ? (
+          <ArtistCard
+            key={artist.id ?? artist._id}
+            artistData={artist}
+          />
+        ) : null
+      )}
     </div>
   );
 }
