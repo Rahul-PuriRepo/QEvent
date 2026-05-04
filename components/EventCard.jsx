@@ -18,6 +18,9 @@ const EventCard = ({ eventData }) => {
             className="w-full h-48 object-cover mb-3 shadow-lg m-auto"
             src={eventData.image || "https://picsum.photos/400/300"}
             alt={eventData.name || "event"}
+            onError={(e)=>{
+              e.target.src=="https://picsum.photos/400/300";
+            }}
           />
 
           <div className="flex gap-2 items-center">
