@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import EventCard from "@/components/EventCard";
 import Link from "next/link";
 
+
+
+
 export default function EventsPage() {
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState([]);
